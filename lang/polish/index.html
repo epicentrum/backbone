@@ -684,28 +684,27 @@ proxy.on("all", function(eventName) {
     <p id="Events-off">
       <b class="header">off</b><code>object.off([event], [callback], [context])</code><span class="alias">Alias: unbind</span>
       <br />
-      Remove a previously-bound <b>callback</b> function from an object. If no
-      <b>context</b> is specified, all of the versions of the callback with
-      different contexts will be removed. If no
-      callback is specified, all callbacks for the <b>event</b> will be
-      removed. If no event is specified, <i>all</i> event callbacks on the object
-      will be removed.
+      Usuwa z obiektu wcześniej związaną funkcję zwrotną. Jeżeli nie przekazano argumentu <b>context</b>,
+      usunięte zostaną wszystkie wersje funkcji zwrotnej z różnymi kontekstami. Jeżeli nie określono
+      funkcji zwrotnej (argumentu callback), usunięte zostaną wszystkie funkcje zwrotne dla danego <b>zdarzenia</b>.
+      Jeśli nie określono zdarzenia (argumentu event), z obiektu zostaną usunięte funkcje zwrotne
+      związane z <i>wszystkimi</i> zdarzeniami.
     </p>
 
 <pre>
-// Removes just the `onChange` callback.
+// Usuwa tylko funkcję zwrotną zdarzenia `onChange`.
 object.off("change", onChange);
 
-// Removes all "change" callbacks.
+// Usuwa wszystkie funkcje zwrotne zdarzenia "change".
 object.off("change");
 
-// Removes the `onChange` callback for all events.
+// Usuwa funkcję zwrotną `onChange` każdego zdarzenia.
 object.off(null, onChange);
 
-// Removes all callbacks for `context` for all events.
+// Usuwa wszystkie funkcje zwrotne kontekstu `context` dla każdego zdarzenia.
 object.off(null, null, context);
 
-// Removes all callbacks on `object`.
+// Usuwa wszystkie funkcje zwrotne obiektu `object`.
 object.off();
 </pre>
 
