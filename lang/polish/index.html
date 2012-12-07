@@ -626,10 +626,10 @@
     <h2 id="Events">Backbone.Events</h2>
 
     <p>
-      <b>Events</b> is a module that can be mixed in to any object, giving the
-      object the ability to bind and trigger custom named events. Events do not
-      have to be declared before they are bound, and may take passed arguments.
-      For example:
+      <b>Events </b> to moduł, który może być wmieszany do dowolnego obiektu, dając mu możliwość 
+      wiązania (ang. bind) i wyzwalania (ang. trigger) własnych zdarzeń. Zdarzenia nie muszą być 
+      deklarowane zanim zostaną związane i mogą przyjmować argumenty.
+      Na Przykład:
     </p>
 
 <pre class="runnable">
@@ -638,25 +638,25 @@ var object = {};
 _.extend(object, Backbone.Events);
 
 object.on("alert", function(msg) {
-  alert("Triggered " + msg);
+  alert("Wyzwolono " + msg);
 });
 
-object.trigger("alert", "an event");
+object.trigger("alert", "zdarzenie");
 </pre>
 
     <p>
-      For example, to make a handy event dispatcher that can coordinate events
-      among different areas of your application: <tt>var dispatcher = _.clone(Backbone.Events)</tt>
+    	Na przykład aby stworzyć poręcznego dyspozytora zdarzeń (ang. event dispatcher), który
+    	koordynuje zdarzenia z różnych miejsc w twojej aplikacji: <tt>var dispatcher = _.clone(Backbone.Events)</tt>
     </p>
 
     <p id="Events-on">
       <b class="header">on</b><code>object.on(event, callback, [context])</code><span class="alias">Alias: bind</span>
       <br />
-      Bind a <b>callback</b> function to an object. The callback will be invoked
-      whenever the <b>event</b> is fired.
-      If you have a large number of different events on a page, the convention is to use colons to
-      namespace them: <tt>"poll:start"</tt>, or <tt>"change:selection"</tt>.
-      The event string may also be a space-delimited list of several events...
+      Wiąże <b>funkcję zwrotną</b> (ang. callback) z obiektem. Funkcja ta będzie wywołana za każdym
+      razem, kiedy nastąpi <b>zdarzenie</b>.
+			Jeżeli masz na stronie wiele różnych zdarzeń, istnieje konwencja stosowania dwukropków w celu
+			określania przestrzeni nazw: <tt>"poll:start"</tt> lub <tt>"change:selection"</tt>.
+			Łańcuch może też zamiast pojedynczego zdarzenia zawierać listę oddzielonych spacją kilku zdarzeń...
     </p>
 
 <pre>
@@ -664,15 +664,15 @@ book.on("change:title change:author", ...);
 </pre>
 
     <p>
-      To supply a <b>context</b> value for <tt>this</tt> when the callback is invoked,
-      pass the optional third argument: <tt>model.on('change', this.render, this)</tt>
+      Aby ustawić <b>kontekst</b> wywoływanej funkcji zwrotnej na <tt>this</tt>,
+      przekaż opcjonalny trzeci argument: <tt>model.on('change', this.render, this)</tt>
     </p>
 
     <p>
-      Callbacks bound to the special
-      <tt>"all"</tt> event will be triggered when any event occurs, and are passed
-      the name of the event as the first argument. For example, to proxy all events
-      from one object to another:
+    	Funkcje zwrotne są związane ze specjalnym zdarzeniem
+    	<tt>"all"</tt>, które jest wyzwalane w momencie wystąpienia każdego zdarzenia. Nazwa zdarzenia
+    	jest przekazywana do tej funkcji jako pierszy argument. Na przykład aby przekazać
+    	wszystkie zdarzenia z jednego obiektu do innego:
     </p>
 
 <pre>
@@ -684,37 +684,35 @@ proxy.on("all", function(eventName) {
     <p id="Events-off">
       <b class="header">off</b><code>object.off([event], [callback], [context])</code><span class="alias">Alias: unbind</span>
       <br />
-      Remove a previously-bound <b>callback</b> function from an object. If no
-      <b>context</b> is specified, all of the versions of the callback with
-      different contexts will be removed. If no
-      callback is specified, all callbacks for the <b>event</b> will be
-      removed. If no event is specified, <i>all</i> event callbacks on the object
-      will be removed.
+      Usuwa z obiektu wcześniej związaną funkcję zwrotną. Jeżeli nie przekazano argumentu <b>context</b>,
+      usunięte zostaną wszystkie wersje funkcji zwrotnej z różnymi kontekstami. Jeżeli nie określono
+      funkcji zwrotnej (argumentu callback), usunięte zostaną wszystkie funkcje zwrotne dla danego <b>zdarzenia</b>.
+      Jeśli nie określono zdarzenia (argumentu event), z obiektu zostaną usunięte funkcje zwrotne
+      związane z <i>wszystkimi</i> zdarzeniami.
     </p>
 
 <pre>
-// Removes just the `onChange` callback.
+// Usuwa tylko funkcję zwrotną zdarzenia `onChange`.
 object.off("change", onChange);
 
-// Removes all "change" callbacks.
+// Usuwa wszystkie funkcje zwrotne zdarzenia "change".
 object.off("change");
 
-// Removes the `onChange` callback for all events.
+// Usuwa funkcję zwrotną `onChange` każdego zdarzenia.
 object.off(null, onChange);
 
-// Removes all callbacks for `context` for all events.
+// Usuwa wszystkie funkcje zwrotne kontekstu `context` dla każdego zdarzenia.
 object.off(null, null, context);
 
-// Removes all callbacks on `object`.
+// Usuwa wszystkie funkcje zwrotne obiektu `object`.
 object.off();
 </pre>
 
     <p id="Events-trigger">
       <b class="header">trigger</b><code>object.trigger(event, [*args])</code>
       <br />
-      Trigger callbacks for the given <b>event</b>, or space-delimited list of events.
-      Subsequent arguments to <b>trigger</b> will be passed along to the
-      event callbacks.
+      Wyzwala funkcje zwrotne danego zdarzenia (argument <b>event</b>), lub listy oddzielonych spacjami zdarzeń.
+      Pozostałe argumenty metody <b>trigger</b> zostaną przekazane do funkcji zwrotnych.
     </p>
 
     <h2 id="Model">Backbone.Model</h2>
