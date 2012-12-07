@@ -483,102 +483,105 @@
     </p>
 
     <p>
-      Backbone.js gives structure to web applications
-      by providing <b>models</b> with key-value binding and custom events,
-      <b>collections</b> with a rich API of enumerable functions,
-      <b>views</b> with declarative event handling, and connects it all to your
-      existing API over a RESTful JSON interface.
+	  Backbone.js daje Ci gotową strukturę do budowy aplikacji internetowych. Zawiera 
+	  ona <b>modele</b> ze zdarzeniami niestandardowymi, grupujące dane na zasadzie 
+	  klucz-wartość, <b>kolekcję</b> z bogatym API funkcji wyliczeniowych, oraz 
+	  <b>widoki</b> z deklaratywną obsługą zdarzeń i łączy to wszystko z Twoim 
+	  istniejącymi API przez interfejs JSON zgodny z wzorcem REST.
+
     </p>
 
     <p>
-      The project is <a href="http://github.com/documentcloud/backbone/">hosted on GitHub</a>,
-      and the <a href="../../docs/backbone.html">annotated source code</a> is available,
-      as well as an online <a href="test/test.html">test suite</a>,
-      an <a href="../../examples/todos/index.html">example application</a>,
-      a <a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites">list of tutorials</a>
-      and a <a href="#examples">long list of real-world projects</a> that use Backbone.
-      Backbone is available for use under the <a href="http://github.com/documentcloud/backbone/blob/master/LICENSE">MIT software license</a>.
+      Projekt jest <a href="http://github.com/documentcloud/backbone/">hostowany na GitHubie</a>.
+      Dostępny jest <a href="../../docs/backbone.html">udokumentowany kod źródłowy</a>, 
+      <a href="test/test.html">zestaw testowy online</a>,
+      <a href="../../examples/todos/index.html">przykładowa aplikacja</a>,
+      <a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites">spis tutoriali</a>
+      i <a href="#examples">długa lista realnie działających projektów</a>, wykorzystujących Backbone.
+      Backbone jest dostępny na licencji <a href="http://github.com/documentcloud/backbone/blob/master/LICENSE">MIT software license</a>.
+
     </p>
 
     <p>
-      You can report bugs and discuss features on the
-      <a href="http://github.com/documentcloud/backbone/issues">GitHub issues page</a>,
-      on Freenode IRC in the <tt>#documentcloud</tt> channel, post questions to the
-      <a href="https://groups.google.com/forum/#!forum/backbonejs">Google Group</a>,
-      add pages to the <a href="https://github.com/documentcloud/backbone/wiki">wiki</a>
-      or send tweets to <a href="http://twitter.com/documentcloud">@documentcloud</a>.
+      Możesz zgłaszać bugi i dyskutować o właściwościach Backbone na
+      <a href="http://github.com/documentcloud/backbone/issues">GitHubowej stronie problemów</a>,
+      na kanale <tt>#documentcloud</tt> na Freenode IRC, napisać na
+      <a href="https://groups.google.com/forum/#!forum/backbonejs">Grupie Google</a>,
+      dodać stronę do <a href="https://github.com/documentcloud/backbone/wiki">wiki</a>
+      lub wysłać tweeta do <a href="http://twitter.com/documentcloud">@documentcloud</a>.
     </p>
 
     <p>
       <i>
-        Backbone is an open-source component of
+        Backbone jest open-sourcową częścią
         <a href="http://documentcloud.org/">DocumentCloud</a>.
       </i>
     </p>
 
     <h2 id="downloads">
-      Downloads &amp; Dependencies
-      <span style="padding-left: 7px; font-size:11px; font-weight: normal;" class="interface">(Right-click, and use "Save As")</span>
+      Download &amp; Zależności
+      <span style="padding-left: 7px; font-size:11px; font-weight: normal;" class="interface">(Kliknij prawym i "Zapisz jako")</span>
     </h2>
 
     <table>
       <tr>
-        <td><a class="punch" href="backbone.js">Development Version (0.9.2)</a></td>
-        <td class="text"><i>52kb, Full source, lots of comments</i></td>
+        <td><a class="punch" href="backbone.js">Wersja developerska (0.9.2)</a></td>
+        <td class="text"><i>52kb, Pełne źródło, wiele komentarzy</i></td>
       </tr>
       <tr>
-        <td><a class="punch" href="backbone-min.js">Production Version (0.9.2)</a></td>
-        <td class="text"><i>5.6kb, Packed and gzipped</i></td>
+        <td><a class="punch" href="backbone-min.js">Wersja produkcyjna (0.9.2)</a></td>
+        <td class="text"><i>5.6kb, Spakowana i gzipowana</i></td>
       </tr>
       <tr>
-        <td><a class="punch" href="https://raw.github.com/documentcloud/backbone/master/backbone.js">Edge Version (master)</a></td>
-        <td><i>Unreleased, use at your own risk</i></td>
+        <td><a class="punch" href="https://raw.github.com/documentcloud/backbone/master/backbone.js">Wersja rozwojowa (master)</a></td>
+        <td><i>Przed wydaniem, korzystasz na własne ryzyko</i></td>
       </tr>
     </table>
 
     <p>
-      Backbone's only hard dependency is
+      Jedyna wymagana zależność Backbone to
       <a href="http://documentcloud.github.com/underscore/">Underscore.js</a> <small>( > 1.3.1)</small>.
-      For RESTful persistence, history support via <a href="#Router">Backbone.Router</a>
-      and DOM manipulation with <a href="#View">Backbone.View</a>, include
-      <a href="https://github.com/douglascrockford/JSON-js">json2.js</a>, and either
-      <a href="http://jquery.com">jQuery</a> <small>( > 1.4.2)</small> or
+       Dla utrzymania pełnej zgodności z REST, wsparcia historii przeglądarki przez <a href="#Router">Backbone.Router</a>
+      i manipulacji DOM przez <a href="#View">Backbone.View</a>, dołącz
+      <a href="https://github.com/douglascrockford/JSON-js">json2.js</a>,
+      <a href="http://jquery.com">jQuery</a> <small>( > 1.4.2)</small> lub
       <a href="http://zeptojs.com/">Zepto</a>.
     </p>
 
-    <h2 id="introduction">Introduction</h2>
+    <h2 id="introduction">Wstęp</h2>
 
     <p>
-      When working on a web application that involves a lot of JavaScript, one
-      of the first things you learn is to stop tying your data to the DOM. It's all
-      too easy to create JavaScript applications that end up as tangled piles of
-      jQuery selectors and callbacks, all trying frantically to keep data in
-      sync between the HTML UI, your JavaScript logic, and the database on your
-      server. For rich client-side applications, a more structured approach
-      is often helpful.
+	  Pracując nad aplikacją internetową opierającą się, w dużej mierze, na 
+	  JavaScripcie jedną z pierwszych rzeczy których trzeba się nauczyć jest 
+	  zaprzestanie przywiązywania danych do drzewa DOM. Stworzenie aplikacji 
+	  JavaScript która staje się splątanym zbiorem selektorów jQuery i 
+	  callbacków próbujących w jakiś szalony sposób połączyć dane z interfejsem 
+	  HTML, logiką Twojego kodu i bazą danych na serwerze, jest zbyt proste. 
+	  Pisząc RIA, opierające się na działaniu po stronie klienta, warto 
+	  zdecydować się na bardziej ustrukturyzowane podejście do sprawy.
     </p>
 
     <p>
-      With Backbone, you represent your data as
-      <a href="#Model">Models</a>, which can be created, validated, destroyed,
-      and saved to the server. Whenever a UI action causes an attribute of
-      a model to change, the model triggers a <i>"change"</i> event; all
-      the <a href="#View">Views</a> that display the model's state can be notified of the
-      change, so that they are able to respond accordingly, re-rendering themselves with
-      the new information. In a finished Backbone app, you don't have to write the glue
-      code that looks into the DOM to find an element with a specific <i>id</i>,
-      and update the HTML manually
-      &mdash; when the model changes, the views simply update themselves.
+      Z Backbone reprezentujesz dane jako 
+      <a href="#Model">Modele</a>. Możesz je tworzyć, walidować, usuwać i 
+      zapisywać na serwerze. Gdy tylko akcja wywołana w UI spowoduje zmianę 
+      któregoś z atrybutów modelu, wyzwoli to zdarzenie <i>"zmiany"</i>; wszystkie
+      <a href="#View">Widoki</a> które wyświetlają stan modelu mogą zostać 
+      poinformowane o zmianie i zachować się odpowiednio do niej, tj. przerenderować 
+      z nowymi informacjami. W gotowej aplikacji Backbone nie musisz grzebać w DOM 
+      i ręcznie odświeżać HTML-a
+      &mdash; gdy nastąpi zmiana modelu, widok zaktualizuje się automatycznie.
     </p>
 
     <p>
-      If you're new here, and aren't yet quite sure what Backbone is for, start by
-      browsing the <a href="#examples">list of Backbone-based projects</a>.
+      Jeśli jesteś tu nowy i nie masz pewności do czego służy Backbone, 
+      zacznij od obejrzenia <a href="#examples">listy projektów bazujących 
+      na Backbone</a>.
     </p>
 
     <p>
-      Many of the examples that follow are runnable. Click the <i>play</i> button
-      to execute them.
+      Możesz zobaczyć jak działa wiele z podanych przykładów. Żeby to zrobić 
+      kliknij <i>uruchom</i>.
     </p>
 
     <h2 id="upgrading">Upgrading to 0.9</h2>
