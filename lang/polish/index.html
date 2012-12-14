@@ -1972,62 +1972,63 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
     <h2 id="History">Backbone.history</h2>
 
     <p>
-      <b>History</b> serves as a global router (per frame) to handle <tt>hashchange</tt>
-      events or <tt>pushState</tt>, match the appropriate route, and trigger callbacks. You shouldn't
-      ever have to create one of these yourself &mdash; you should use the reference
-      to <tt>Backbone.history</tt> that will be created for you automatically if you make use
-      of <a href="#Router">Routers</a> with <a href="#Router-routes">routes</a>.
+      <b>History</b> działa jak globalny router (osobno dla każdej ramki na stronie), obsługujący zdarzenia <tt>hashchange</tt>,
+      lub obiekt <tt>pushState</tt>. Dokonuje wyboru odpowiedniej ścieżki (route) i wywołuje funkcje zwrotne. Gdy deklarujesz funkcję zwrotną zawsze odwołuj się do <tt>Backbone.history</tt> (obiekt ten zostanie utworzony gdy tylko użyjesz
+      <a href="#Router">Routers</a> z <a href="#Router-routes">routes</a>) - nigdy nie twórz jej osobno.
+
     </p>
 
-    <p>
-      <b>pushState</b> support exists on a purely opt-in basis in Backbone.
-      Older browsers that don't support <tt>pushState</tt> will continue to use
-      hash-based URL fragments, and if a hash URL is visited by a
-      <tt>pushState</tt>-capable browser, it will be transparently upgraded to
-      the true URL. Note that using real URLs requires your web server to be
-      able to correctly render those pages, so back-end changes are required
-      as well. For example, if you have a route of <tt>/documents/100</tt>,
-      your web server must be able to serve that page, if the browser
-      visits that URL directly. For full search-engine crawlability, it's best to
-      have the server generate the complete HTML for the page ... but if it's a web
-      application, just rendering the same content you would have for the root URL,
-      and filling in the rest with Backbone Views and JavaScript works fine.
+    <p>	
+      Wsparcie <b>pushState</b> zaimplementowane jest w podstawie Backbone, 
+      ale możesz zdecydować, czy chcesz je uruchomić. Starsze przeglądarki 
+      które nie wspierają <tt>pushState</tt> będą wciąż używać URLi bazujących 
+      na hashach, jeżeli jednak URL z hashem zostanie otwarty w nowoczesnej 
+      przeglądarce, przy obsłudze <tt>pushState</tt>, zostanie on automatycznie 
+      zmieniony w prawdziwy URL. 
+      Warto wspomnieć, że używanie prawdziwych URLi wymaga całkowitego obsłużenia 
+      ich także po stronie serwera. Dla przykładu: jeśli masz ścieżkę 
+      <tt>/documents/100</tt> i taki URL zostanie otwarty bezpośrednio, to back-end 
+      musi zaserwować odpowiednią dla niego stronę. Także dla pełnego wsparcia 
+      robotów wyszukiwarek, najlepiej stworzyć back-end generujący kompletny 
+      HTML Twojej strony... ale jeżeli chodzi o aplikacje internetowe, renderowanie 
+      treści dla głównego URLa i wypełnianie reszty przez Backbone Views i JS, 
+      powinno być wystarczające.
     </p>
 
     <p id="History-start">
       <b class="header">start</b><code>Backbone.history.start([options])</code>
       <br />
-      When all of your <a href="#Router">Routers</a> have been created,
-      and all of the routes are set up properly, call <tt>Backbone.history.start()</tt>
-      to begin monitoring <tt>hashchange</tt> events, and dispatching routes.
+      Kiedy stworzyłeś już wszystkie <a href="#Router">Routery</a> a 
+      ścieżki (routes) są poprawnie zadeklarowane, wywołaj <tt>Backbone.history.start()</tt>
+      aby zacząć śledzenie zdarzeń <tt>hashchange</tt> i dysponowanie ścieżek.
     </p>
 
     <p>
-      To indicate that you'd like to use HTML5 <tt>pushState</tt> support in
-      your application, use <tt>Backbone.history.start({pushState: true})</tt>.
+      By włączyć obsługę HTML5 <tt>pushState</tt>
+      użyj <tt>Backbone.history.start({pushState: true})</tt>.
     </p>
 
     <p>
-      If your application is not being served from the root url <tt>/</tt> of your
-      domain, be sure to tell History where the root really is, as an option:
+      Jesli Twoja aplikacja nie jest serwowana z głównego URLa <tt>/</tt> w Twojej
+      domenie, musisz pamiętać by poinformować History, o właściwym adresie aplikacji:
       <tt>Backbone.history.start({pushState: true, root: "/public/search/"})</tt>
     </p>
 
     <p>
-      When called, if a route succeeds with a match for the current URL,
-      <tt>Backbone.history.start()</tt> returns <tt>true</tt>. If no defined
-      route matches the current URL, it returns <tt>false</tt>.
+      Wywołana metoda <tt>Backbone.history.start()</tt> zwraca <tt>true</tt> 
+      gdy dopasuje jedną ze zdefiniowanych ścieżek (route) do aktualnego URL.
+      Gdy dopasowanie się nie powiedzie - zwróci <tt>false</tt>.
     </p>
 
     <p>
-      If the server has already rendered the entire page, and you don't want the
-      initial route to trigger when starting History, pass <tt>silent: true</tt>.
+      Jeśli serwer już wyrerenderował całą stronę i nie chcesz uruchamiać 
+      ścieżki (route) przy starcie History, dodaj: <tt>silent: true</tt>.
     </p>
 
     <p>
-      Because hash-based history in Internet Explorer relies on an
-      <tt>&lt;iframe&gt;</tt>, be sure to only call <tt>start()</tt> after the DOM
-      is ready.
+      Ponieważ historia oparta na hashach w IE działa za pomocą
+      <tt>&lt;iframe&gt;</tt>, zawsze wywołuj metodę <tt>start()</tt> 
+      gdy tylko DOM jest gotowy.
     </p>
 
 <pre>
