@@ -1,5 +1,10 @@
 test/
 Rakefile
 docs/
+<<<<<<< HEAD
 raw/
 examples/
+=======
+examples/
+index.html
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d

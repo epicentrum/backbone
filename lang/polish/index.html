@@ -483,102 +483,105 @@
     </p>
 
     <p>
-      Backbone.js gives structure to web applications
-      by providing <b>models</b> with key-value binding and custom events,
-      <b>collections</b> with a rich API of enumerable functions,
-      <b>views</b> with declarative event handling, and connects it all to your
-      existing API over a RESTful JSON interface.
+    Backbone.js daje Ci gotową strukturę do budowy aplikacji internetowych. Zawiera 
+    ona <b>modele</b> ze zdarzeniami niestandardowymi, grupujące dane na zasadzie 
+    klucz-wartość, <b>kolekcję</b> z bogatym API funkcji wyliczeniowych, oraz 
+    <b>widoki</b> z deklaratywną obsługą zdarzeń i łączy to wszystko z Twoim 
+    istniejącymi API przez interfejs JSON zgodny z wzorcem REST.
+
     </p>
 
     <p>
-      The project is <a href="http://github.com/documentcloud/backbone/">hosted on GitHub</a>,
-      and the <a href="../../docs/backbone.html">annotated source code</a> is available,
-      as well as an online <a href="test/test.html">test suite</a>,
-      an <a href="../../examples/todos/index.html">example application</a>,
-      a <a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites">list of tutorials</a>
-      and a <a href="#examples">long list of real-world projects</a> that use Backbone.
-      Backbone is available for use under the <a href="http://github.com/documentcloud/backbone/blob/master/LICENSE">MIT software license</a>.
+      Projekt jest <a href="http://github.com/documentcloud/backbone/">hostowany na GitHubie</a>.
+      Dostępny jest <a href="../../docs/backbone.html">udokumentowany kod źródłowy</a>, 
+      <a href="test/test.html">zestaw testowy online</a>,
+      <a href="../../examples/todos/index.html">przykładowa aplikacja</a>,
+      <a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites">spis tutoriali</a>
+      i <a href="#examples">długa lista realnie działających projektów</a>, wykorzystujących Backbone.
+      Backbone jest dostępny na licencji <a href="http://github.com/documentcloud/backbone/blob/master/LICENSE">MIT software license</a>.
+
     </p>
 
     <p>
-      You can report bugs and discuss features on the
-      <a href="http://github.com/documentcloud/backbone/issues">GitHub issues page</a>,
-      on Freenode IRC in the <tt>#documentcloud</tt> channel, post questions to the
-      <a href="https://groups.google.com/forum/#!forum/backbonejs">Google Group</a>,
-      add pages to the <a href="https://github.com/documentcloud/backbone/wiki">wiki</a>
-      or send tweets to <a href="http://twitter.com/documentcloud">@documentcloud</a>.
+      Możesz zgłaszać bugi i dyskutować o właściwościach Backbone na
+      <a href="http://github.com/documentcloud/backbone/issues">GitHubowej stronie problemów</a>,
+      na kanale <tt>#documentcloud</tt> na Freenode IRC, napisać na
+      <a href="https://groups.google.com/forum/#!forum/backbonejs">Grupie Google</a>,
+      dodać stronę do <a href="https://github.com/documentcloud/backbone/wiki">wiki</a>
+      lub wysłać tweeta do <a href="http://twitter.com/documentcloud">@documentcloud</a>.
     </p>
 
     <p>
       <i>
-        Backbone is an open-source component of
+        Backbone jest open-sourcową częścią
         <a href="http://documentcloud.org/">DocumentCloud</a>.
       </i>
     </p>
 
     <h2 id="downloads">
-      Downloads &amp; Dependencies
-      <span style="padding-left: 7px; font-size:11px; font-weight: normal;" class="interface">(Right-click, and use "Save As")</span>
+      Download &amp; Zależności
+      <span style="padding-left: 7px; font-size:11px; font-weight: normal;" class="interface">(Kliknij prawym i "Zapisz jako")</span>
     </h2>
 
     <table>
       <tr>
-        <td><a class="punch" href="backbone.js">Development Version (0.9.2)</a></td>
-        <td class="text"><i>52kb, Full source, lots of comments</i></td>
+        <td><a class="punch" href="backbone.js">Wersja developerska (0.9.2)</a></td>
+        <td class="text"><i>52kb, Pełne źródło, wiele komentarzy</i></td>
       </tr>
       <tr>
-        <td><a class="punch" href="backbone-min.js">Production Version (0.9.2)</a></td>
-        <td class="text"><i>5.6kb, Packed and gzipped</i></td>
+        <td><a class="punch" href="backbone-min.js">Wersja produkcyjna (0.9.2)</a></td>
+        <td class="text"><i>5.6kb, Spakowana i gzipowana</i></td>
       </tr>
       <tr>
-        <td><a class="punch" href="https://raw.github.com/documentcloud/backbone/master/backbone.js">Edge Version (master)</a></td>
-        <td><i>Unreleased, use at your own risk</i></td>
+        <td><a class="punch" href="https://raw.github.com/documentcloud/backbone/master/backbone.js">Wersja rozwojowa (master)</a></td>
+        <td><i>Przed wydaniem, korzystasz na własne ryzyko</i></td>
       </tr>
     </table>
 
     <p>
-      Backbone's only hard dependency is
+      Jedyna wymagana zależność Backbone to
       <a href="http://documentcloud.github.com/underscore/">Underscore.js</a> <small>( > 1.3.1)</small>.
-      For RESTful persistence, history support via <a href="#Router">Backbone.Router</a>
-      and DOM manipulation with <a href="#View">Backbone.View</a>, include
-      <a href="https://github.com/douglascrockford/JSON-js">json2.js</a>, and either
-      <a href="http://jquery.com">jQuery</a> <small>( > 1.4.2)</small> or
+       Dla utrzymania pełnej zgodności z REST, wsparcia historii przeglądarki przez <a href="#Router">Backbone.Router</a>
+      i manipulacji DOM przez <a href="#View">Backbone.View</a>, dołącz
+      <a href="https://github.com/douglascrockford/JSON-js">json2.js</a>,
+      <a href="http://jquery.com">jQuery</a> <small>( > 1.4.2)</small> lub
       <a href="http://zeptojs.com/">Zepto</a>.
     </p>
 
-    <h2 id="introduction">Introduction</h2>
+    <h2 id="introduction">Wstęp</h2>
 
     <p>
-      When working on a web application that involves a lot of JavaScript, one
-      of the first things you learn is to stop tying your data to the DOM. It's all
-      too easy to create JavaScript applications that end up as tangled piles of
-      jQuery selectors and callbacks, all trying frantically to keep data in
-      sync between the HTML UI, your JavaScript logic, and the database on your
-      server. For rich client-side applications, a more structured approach
-      is often helpful.
+    Pracując nad aplikacją internetową opierającą się, w dużej mierze, na 
+    JavaScripcie jedną z pierwszych rzeczy których trzeba się nauczyć jest 
+    zaprzestanie przywiązywania danych do drzewa DOM. Stworzenie aplikacji 
+    JavaScript która staje się splątanym zbiorem selektorów jQuery i 
+    callbacków próbujących w jakiś szalony sposób połączyć dane z interfejsem 
+    HTML, logiką Twojego kodu i bazą danych na serwerze, jest zbyt proste. 
+    Pisząc RIA, opierające się na działaniu po stronie klienta, warto 
+    zdecydować się na bardziej ustrukturyzowane podejście do sprawy.
     </p>
 
     <p>
-      With Backbone, you represent your data as
-      <a href="#Model">Models</a>, which can be created, validated, destroyed,
-      and saved to the server. Whenever a UI action causes an attribute of
-      a model to change, the model triggers a <i>"change"</i> event; all
-      the <a href="#View">Views</a> that display the model's state can be notified of the
-      change, so that they are able to respond accordingly, re-rendering themselves with
-      the new information. In a finished Backbone app, you don't have to write the glue
-      code that looks into the DOM to find an element with a specific <i>id</i>,
-      and update the HTML manually
-      &mdash; when the model changes, the views simply update themselves.
+      Z Backbone reprezentujesz dane jako 
+      <a href="#Model">Modele</a>. Możesz je tworzyć, walidować, usuwać i 
+      zapisywać na serwerze. Gdy tylko akcja wywołana w UI spowoduje zmianę 
+      któregoś z atrybutów modelu, wyzwoli to zdarzenie <i>"zmiany"</i>; wszystkie
+      <a href="#View">Widoki</a> które wyświetlają stan modelu mogą zostać 
+      poinformowane o zmianie i zachować się odpowiednio do niej, tj. przerenderować 
+      z nowymi informacjami. W gotowej aplikacji Backbone nie musisz grzebać w DOM 
+      i ręcznie odświeżać HTML-a
+      &mdash; gdy nastąpi zmiana modelu, widok zaktualizuje się automatycznie.
     </p>
 
     <p>
-      If you're new here, and aren't yet quite sure what Backbone is for, start by
-      browsing the <a href="#examples">list of Backbone-based projects</a>.
+      Jeśli jesteś tu nowy i nie masz pewności do czego służy Backbone, 
+      zacznij od obejrzenia <a href="#examples">listy projektów bazujących 
+      na Backbone</a>.
     </p>
 
     <p>
-      Many of the examples that follow are runnable. Click the <i>play</i> button
-      to execute them.
+      Możesz zobaczyć jak działa wiele z podanych przykładów. Żeby to zrobić 
+      kliknij <i>uruchom</i>.
     </p>
 
     <h2 id="upgrading">Upgrading to 0.9</h2>
@@ -626,10 +629,10 @@
     <h2 id="Events">Backbone.Events</h2>
 
     <p>
-      <b>Events</b> is a module that can be mixed in to any object, giving the
-      object the ability to bind and trigger custom named events. Events do not
-      have to be declared before they are bound, and may take passed arguments.
-      For example:
+      <b>Events </b> to moduł, który może być wmieszany do dowolnego obiektu, dając mu możliwość 
+      wiązania (ang. bind) i wyzwalania (ang. trigger) własnych zdarzeń. Zdarzenia nie muszą być 
+      deklarowane zanim zostaną związane i mogą przyjmować argumenty.
+      Na Przykład:
     </p>
 
 <pre class="runnable">
@@ -638,25 +641,25 @@ var object = {};
 _.extend(object, Backbone.Events);
 
 object.on("alert", function(msg) {
-  alert("Triggered " + msg);
+  alert("Wyzwolono " + msg);
 });
 
-object.trigger("alert", "an event");
+object.trigger("alert", "zdarzenie");
 </pre>
 
     <p>
-      For example, to make a handy event dispatcher that can coordinate events
-      among different areas of your application: <tt>var dispatcher = _.clone(Backbone.Events)</tt>
+      Na przykład aby stworzyć poręcznego dyspozytora zdarzeń (ang. event dispatcher), który
+      koordynuje zdarzenia z różnych miejsc w twojej aplikacji: <tt>var dispatcher = _.clone(Backbone.Events)</tt>
     </p>
 
     <p id="Events-on">
       <b class="header">on</b><code>object.on(event, callback, [context])</code><span class="alias">Alias: bind</span>
       <br />
-      Bind a <b>callback</b> function to an object. The callback will be invoked
-      whenever the <b>event</b> is fired.
-      If you have a large number of different events on a page, the convention is to use colons to
-      namespace them: <tt>"poll:start"</tt>, or <tt>"change:selection"</tt>.
-      The event string may also be a space-delimited list of several events...
+      Wiąże <b>funkcję zwrotną</b> (ang. callback) z obiektem. Funkcja ta będzie wywołana za każdym
+      razem, kiedy nastąpi <b>zdarzenie</b>.
+      Jeżeli masz na stronie wiele różnych zdarzeń, istnieje konwencja stosowania dwukropków w celu
+      określania przestrzeni nazw: <tt>"poll:start"</tt> lub <tt>"change:selection"</tt>.
+      Łańcuch może też zamiast pojedynczego zdarzenia zawierać listę oddzielonych spacją kilku zdarzeń...
     </p>
 
 <pre>
@@ -664,15 +667,15 @@ book.on("change:title change:author", ...);
 </pre>
 
     <p>
-      To supply a <b>context</b> value for <tt>this</tt> when the callback is invoked,
-      pass the optional third argument: <tt>model.on('change', this.render, this)</tt>
+      Aby ustawić <b>kontekst</b> wywoływanej funkcji zwrotnej na <tt>this</tt>,
+      przekaż opcjonalny trzeci argument: <tt>model.on('change', this.render, this)</tt>
     </p>
 
     <p>
-      Callbacks bound to the special
-      <tt>"all"</tt> event will be triggered when any event occurs, and are passed
-      the name of the event as the first argument. For example, to proxy all events
-      from one object to another:
+      Funkcje zwrotne są związane ze specjalnym zdarzeniem
+      <tt>"all"</tt>, które jest wyzwalane w momencie wystąpienia każdego zdarzenia. Nazwa zdarzenia
+      jest przekazywana do tej funkcji jako pierszy argument. Na przykład aby przekazać
+      wszystkie zdarzenia z jednego obiektu do innego:
     </p>
 
 <pre>
@@ -684,37 +687,35 @@ proxy.on("all", function(eventName) {
     <p id="Events-off">
       <b class="header">off</b><code>object.off([event], [callback], [context])</code><span class="alias">Alias: unbind</span>
       <br />
-      Remove a previously-bound <b>callback</b> function from an object. If no
-      <b>context</b> is specified, all of the versions of the callback with
-      different contexts will be removed. If no
-      callback is specified, all callbacks for the <b>event</b> will be
-      removed. If no event is specified, <i>all</i> event callbacks on the object
-      will be removed.
+      Usuwa z obiektu wcześniej związaną funkcję zwrotną. Jeżeli nie przekazano argumentu <b>context</b>,
+      usunięte zostaną wszystkie wersje funkcji zwrotnej z różnymi kontekstami. Jeżeli nie określono
+      funkcji zwrotnej (argumentu callback), usunięte zostaną wszystkie funkcje zwrotne dla danego <b>zdarzenia</b>.
+      Jeśli nie określono zdarzenia (argumentu event), z obiektu zostaną usunięte funkcje zwrotne
+      związane z <i>wszystkimi</i> zdarzeniami.
     </p>
 
 <pre>
-// Removes just the `onChange` callback.
+// Usuwa tylko funkcję zwrotną zdarzenia `onChange`.
 object.off("change", onChange);
 
-// Removes all "change" callbacks.
+// Usuwa wszystkie funkcje zwrotne zdarzenia "change".
 object.off("change");
 
-// Removes the `onChange` callback for all events.
+// Usuwa funkcję zwrotną `onChange` każdego zdarzenia.
 object.off(null, onChange);
 
-// Removes all callbacks for `context` for all events.
+// Usuwa wszystkie funkcje zwrotne kontekstu `context` dla każdego zdarzenia.
 object.off(null, null, context);
 
-// Removes all callbacks on `object`.
+// Usuwa wszystkie funkcje zwrotne obiektu `object`.
 object.off();
 </pre>
 
     <p id="Events-trigger">
       <b class="header">trigger</b><code>object.trigger(event, [*args])</code>
       <br />
-      Trigger callbacks for the given <b>event</b>, or space-delimited list of events.
-      Subsequent arguments to <b>trigger</b> will be passed along to the
-      event callbacks.
+      Wyzwala funkcje zwrotne danego zdarzenia (argument <b>event</b>), lub listy oddzielonych spacjami zdarzeń.
+      Pozostałe argumenty metody <b>trigger</b> zostaną przekazane do funkcji zwrotnych.
     </p>
 
     <h2 id="Model">Backbone.Model</h2>
@@ -1818,30 +1819,28 @@ var othello = NYPL.create({
     <h2 id="Router">Backbone.Router</h2>
 
     <p>
-      Web applications often provide linkable, bookmarkable, shareable URLs for
-      important locations in the app. Until recently, hash fragments
-      (<tt>#page</tt>) were used to provide these permalinks, but with the
-      arrival of the History API, it's now possible to use standard URLs (<tt>/page</tt>).
-      <b>Backbone.Router</b> provides methods for routing client-side pages, and
-      connecting them to actions and events. For browsers which don't yet support
-      the History API, the Router handles graceful fallback and transparent
-      translation to the fragment version of the URL.
+      Aplikacje sieciowe często zapewniają bezpośrednie adresy URL do najważniejszych
+      miejsc w swojej strukturze. Długi czas, do tworzenia takich linków używano hashy
+      (<tt>#page</tt>), ale z nadejściem History API można już używać standardowych 
+      URLi (<tt>/page</tt>). <b>Backbone.Router</b> posiada metody do obsługi ścieżek 
+      po stronie klienta i łączenia ich z akcjami, oraz zdarzeniami. W przeglądarkach 
+      które nie obsługują History API, Router obsługuje automatyczne przetwarzanie URLi 
+      i przejście na używanie hashy.
     </p>
 
     <p>
-      During page load, after your application has finished creating all of its routers,
-      be sure to call <tt>Backbone.history.start()</tt>, or
-      <tt>Backbone.history.start({pushState: true})</tt> to route the initial URL.
+      W trakcie ładowania strony, gdy Twoja aplikacja zakończy tworzenie wszystkich routerów 
+      pamiętaj by wywołać <tt>Backbone.history.start()</tt>, lub 
+      <tt>Backbone.history.start({pushState: true})</tt> aby uruchomić początkową ścieżkę i 
+      śledzenie URLi.
     </p>
 
     <p id="Router-extend">
       <b class="header">extend</b><code>Backbone.Router.extend(properties, [classProperties])</code>
       <br />
-      Get started by creating a custom router class. Define actions that are
-      triggered when certain URL fragments are
-      matched, and provide a <a href="#Router-routes">routes</a> hash
-      that pairs routes to actions. Note that you'll want to avoid using a
-      leading slash in your route definitions:
+      Zacznij od stworzenia dowolnej klasy routera. Zdefiniuj akcje wywoływane dla konkretnych URLi 
+      i stwórz tablicę <a href="#Router-routes">ścieżek</a> (ang. routes), która połączy ścieżki z 
+      akcjami. Pamiętaj by unikać wpisywania głównego slasha przy definiowaniu ścieżek:
     </p>
 
 <pre>
@@ -1867,27 +1866,36 @@ var Workspace = Backbone.Router.extend({
     <p id="Router-routes">
       <b class="header">routes</b><code>router.routes</code>
       <br />
-      The routes hash maps URLs with parameters to functions on your router,
-      similar to the <a href="#View">View</a>'s <a href="#View-delegateEvents">events hash</a>.
-      Routes can contain parameter parts, <tt>:param</tt>, which match a single URL
-      component between slashes; and splat parts <tt>*splat</tt>, which can match
-      any number of URL components.
+      Ścieżki (ang. routes) przypisują URL z parametrami do funkcji routera, podobnie jak 
+      <a href="#View-delegateEvents">event hash</a> robi to w <a href="#View">Widokach</a>.
+      Ścieżki mogą zawierać parametry <tt>:param</tt>, które odpowiadają pojedynczej części 
+      adresu URL pomiędzy slashami; oraz części <tt>*splat</tt>, które wyłapują dowolną liczbę 
+      fragmentów URLa. Część ścieżki może być zaznaczona jako opcjonalna przez otoczenie jej 
+      nawiasami <tt>(/:optional)</tt>.
     </p>
 
     <p>
-      For example, a route of <tt>"search/:query/p:page"</tt> will match
-      a fragment of <tt>#search/obama/p2</tt>, passing <tt>"obama"</tt>
-      and <tt>"2"</tt> to the action. A route of <tt>"file/*path"</tt> will
-      match <tt>#file/nested/folder/file.txt</tt>,
-      passing <tt>"nested/folder/file.txt"</tt> to the action.
+      Przykładowo, ścieżka: <tt>"search/:query/p:page"</tt> przechwyci adres 
+      <tt>#search/obama/p2</tt>, wysyłając <tt>"obama"</tt> i <tt>"2"</tt> do akcji. 
     </p>
 
     <p>
-      When the visitor presses the back button, or enters a URL, and a particular
-      route is matched, the name of the action will be fired as an
-      <a href="#Events">event</a>, so that other objects can listen to the router,
-      and be notified. In the following example, visiting <tt>#help/uploading</tt>
-      will fire a <tt>route:help</tt> event from the router.
+      Ścieżka <tt>"file/*path"</tt> przechwyci <tt>#file/nested/folder/file.txt</tt>,
+      przesyłając <tt>"nested/folder/file.txt"</tt> do akcji.
+    </p>
+
+    <p>
+      Ścieżka <tt>"docs/:section(/:subsection)"</tt> przechwyci <tt>#dosc/faq</tt>, 
+      oraz <tt>#docs/faq/installing</tt>, w pierwszym wypadku przesyłając <tt>"faq"</tt> 
+      do akcji, zaś w drugim, przesyłając <tt>"faq"</tt>, oraz <tt>"installing"</tt>.
+    </p>
+
+    <p>
+      Gdy użytkownik naciśnie przycisk powrotu, lub wpisze URL, który zostanie dopasowany 
+      do którejś ze ścieżek, nazwa akcji zostanie uruchomiona jako 
+      <a href="#Events">zdarzenie</a>, więc pozostałe obiekty mogą nasłuchiwać routera i 
+      być o tym informowane. W podanym przykładzie, odwiedzenie <tt>#help/uploading</tt>
+      wywoła zdarzenie <tt>route:help</tt> z routera.
     </p>
 
 <pre>
@@ -1908,22 +1916,22 @@ router.on("route:help", function(page) {
     <p id="Router-constructor">
       <b class="header">constructor / initialize</b><code>new Router([options])</code>
       <br />
-      When creating a new router, you may pass its
-      <a href="#Router-routes">routes</a> hash directly as an option, if you
-      choose. All <tt>options</tt> will also be passed to your <tt>initialize</tt>
-      function, if defined.
+      Tworząc nowy router możesz wpisać tablicę jego
+      <a href="#Router-routes">ścieżek</a> jako opcję - bezpośrednio. Wszystkie argumenty 
+      (<tt>options</tt>) zostaną przekazane do funkcji <tt>initialize</tt>,
+      jeżeli taka istnieje.
     </p>
 
     <p id="Router-route">
       <b class="header">route</b><code>router.route(route, name, [callback])</code>
       <br />
-      Manually create a route for the router, The <tt>route</tt> argument may
-      be a <a href="#Router-routes">routing string</a> or regular expression.
-      Each matching capture from the route or regular expression will be passed as
-      an argument to the callback. The <tt>name</tt> argument will be triggered as
-      a <tt>"route:name"</tt> event whenever the route is matched.  If the
-      <tt>callback</tt> argument is omitted <tt>router[name]</tt> will be used
-      instead.
+      Ręczne tworzenie ścieżki dla routera: argumentem ścieżki (<tt>route</tt>) może być
+      <a href="#Router-routes">string ścieżki</a> lub wyrażenie regularne.
+      Każdy fragment pasujący do ścieżki, lub wyrażenia regularnego będzie przekazany 
+      jako argument do funkcji zwrotnej. Argument (<tt>name</tt>) określa zdarzenie 
+      <tt>"route:name"</tt> które będzie wyzwalane za każdym razem, gdy adres URL zostanie 
+      dopasowany do twojej ścieżki. Jeżeli nie stworzysz, żadnej funkcji zwrotnej 
+      (<tt>callback</tt>), zamiast niej wywołany zostanie <tt>router[name]</tt>.
     </p>
 
 <pre>
@@ -1943,12 +1951,12 @@ open: function(id) { ... }
     <p id="Router-navigate">
       <b class="header">navigate</b><code>router.navigate(fragment, [options])</code>
       <br />
-      Whenever you reach a point in your application that you'd like to save
-      as a URL, call <b>navigate</b> in order to update the URL.
-      If you wish to also call the route function, set the <b>trigger</b>
-      option to <tt>true</tt>.
-      To update the URL without creating an entry in the browser's history,
-      set the <b>replace</b> option to <tt>true</tt>.
+      Zawsze kiedy znajdziesz punkt w aplikacji który chcesz zapisać jako URL, 
+      wywołaj metodę <b>navigate</b>, która zaktualizuje adres URL.
+      Jeśli chcesz także wywołać funkcję przypisaną do ścieżki, ustaw opcję <b>trigger</b>
+      na <tt>true</tt>.
+      Aby zaktualizować URL bez tworzenia wpisu w historii przeglądarki, ustaw opcję 
+      <b>replace</b> na <tt>true</tt>.
     </p>
 
 <pre>
@@ -1969,62 +1977,67 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
     <h2 id="History">Backbone.history</h2>
 
     <p>
-      <b>History</b> serves as a global router (per frame) to handle <tt>hashchange</tt>
-      events or <tt>pushState</tt>, match the appropriate route, and trigger callbacks. You shouldn't
-      ever have to create one of these yourself &mdash; you should use the reference
-      to <tt>Backbone.history</tt> that will be created for you automatically if you make use
-      of <a href="#Router">Routers</a> with <a href="#Router-routes">routes</a>.
+      <b>History</b> działa jak globalny router (osobno dla każdej ramki na stronie), 
+      obsługujący zdarzenia <tt>hashchange</tt>, lub obiekt <tt>pushState</tt>, 
+      dokonuje wyboru odpowiedniej ścieżki (ang. route) i wywołuje funkcje zwrotne. Gdy 
+      deklarujesz funkcję zwrotną zawsze odwołuj się do <tt>Backbone.history</tt> (
+      obiekt ten zostanie utworzony gdy tylko użyjesz
+      <a href="#Router">Routers</a> z <a href="#Router-routes">routes</a>) 
+      - nigdy nie twórz jej osobno.
+
     </p>
 
-    <p>
-      <b>pushState</b> support exists on a purely opt-in basis in Backbone.
-      Older browsers that don't support <tt>pushState</tt> will continue to use
-      hash-based URL fragments, and if a hash URL is visited by a
-      <tt>pushState</tt>-capable browser, it will be transparently upgraded to
-      the true URL. Note that using real URLs requires your web server to be
-      able to correctly render those pages, so back-end changes are required
-      as well. For example, if you have a route of <tt>/documents/100</tt>,
-      your web server must be able to serve that page, if the browser
-      visits that URL directly. For full search-engine crawlability, it's best to
-      have the server generate the complete HTML for the page ... but if it's a web
-      application, just rendering the same content you would have for the root URL,
-      and filling in the rest with Backbone Views and JavaScript works fine.
+    <p> 
+      Wsparcie <b>pushState</b> zaimplementowane jest w podstawie Backbone, 
+      ale możesz zdecydować, czy chcesz je uruchomić. Starsze przeglądarki 
+      które nie wspierają <tt>pushState</tt> będą wciąż używać URLi bazujących 
+      na hashach, jeżeli jednak URL z hashem zostanie otwarty w nowoczesnej 
+      przeglądarce, przy obsłudze <tt>pushState</tt>, zostanie on automatycznie 
+      zmieniony w prawdziwy URL. 
+      Warto wspomnieć, że używanie prawdziwych URLi wymaga całkowitego obsłużenia 
+      ich także po stronie serwera. Dla przykładu: jeśli masz ścieżkę 
+      <tt>/documents/100</tt> i taki URL zostanie otwarty bezpośrednio, to back-end 
+      musi zaserwować odpowiednią dla niego stronę. Także dla pełnego wsparcia 
+      robotów wyszukiwarek, najlepiej stworzyć back-end generujący kompletny 
+      HTML Twojej strony... ale jeżeli chodzi o aplikacje internetowe, renderowanie 
+      treści dla głównego URLa i wypełnianie reszty przez Backbone Views i JS, 
+      powinno być wystarczające.
     </p>
 
     <p id="History-start">
       <b class="header">start</b><code>Backbone.history.start([options])</code>
       <br />
-      When all of your <a href="#Router">Routers</a> have been created,
-      and all of the routes are set up properly, call <tt>Backbone.history.start()</tt>
-      to begin monitoring <tt>hashchange</tt> events, and dispatching routes.
+      Kiedy stworzyłeś już wszystkie <a href="#Router">Routery</a> a 
+      ścieżki (ang. routes) są poprawnie zadeklarowane, wywołaj <tt>Backbone.history.start()</tt>
+      aby zacząć śledzenie zdarzeń <tt>hashchange</tt> i dysponowanie ścieżek.
     </p>
 
     <p>
-      To indicate that you'd like to use HTML5 <tt>pushState</tt> support in
-      your application, use <tt>Backbone.history.start({pushState: true})</tt>.
+      By włączyć obsługę HTML5 <tt>pushState</tt>
+      użyj <tt>Backbone.history.start({pushState: true})</tt>.
     </p>
 
     <p>
-      If your application is not being served from the root url <tt>/</tt> of your
-      domain, be sure to tell History where the root really is, as an option:
+      Jesli Twoja aplikacja nie jest serwowana z głównego URLa <tt>/</tt> w Twojej
+      domenie, musisz pamiętać by poinformować History, o właściwym adresie aplikacji:
       <tt>Backbone.history.start({pushState: true, root: "/public/search/"})</tt>
     </p>
 
     <p>
-      When called, if a route succeeds with a match for the current URL,
-      <tt>Backbone.history.start()</tt> returns <tt>true</tt>. If no defined
-      route matches the current URL, it returns <tt>false</tt>.
+      Wywołana metoda <tt>Backbone.history.start()</tt> zwraca <tt>true</tt> 
+      gdy dopasuje jedną ze zdefiniowanych ścieżek do aktualnego URL.
+      Gdy dopasowanie się nie powiedzie - zwróci <tt>false</tt>.
     </p>
 
     <p>
-      If the server has already rendered the entire page, and you don't want the
-      initial route to trigger when starting History, pass <tt>silent: true</tt>.
+      Jeśli serwer już wyrerenderował całą stronę i nie chcesz uruchamiać 
+      zdarzenia ścieżki przy starcie History, dodaj: <tt>silent: true</tt>.
     </p>
 
     <p>
-      Because hash-based history in Internet Explorer relies on an
-      <tt>&lt;iframe&gt;</tt>, be sure to only call <tt>start()</tt> after the DOM
-      is ready.
+      Ponieważ historia oparta na hashach w IE działa za pomocą
+      <tt>&lt;iframe&gt;</tt>, zawsze wywołuj metodę <tt>start()</tt> 
+      gdy tylko DOM jest gotowy.
     </p>
 
 <pre>
@@ -2617,23 +2630,23 @@ var model = localBackbone.Model.extend(...);
       </a>
     </div>
 
-  	<h2 id="examples-wordpress">WordPress.com</h2>
+    <h2 id="examples-wordpress">WordPress.com</h2>
 
-  	<p>
-  		<a href="http://wordpress.com/">WordPress.com</a> is the software-as-a-service
-  		version of <a href="http://wordpress.org">WordPress</a>. It uses Backbone.js
-  		Models, Collections, and Views in its
-  		<a href="http://en.blog.wordpress.com/2012/05/25/notifications-refreshed/">Notifications system</a>.  Backbone.js was selected
-  		because it was easy to fit into the structure of the application, not the
-  		other way around. <a href="http://automattic.com">Automattic</a>
-  		(the company behind WordPress.com) is integrating Backbone.js into the
-  		Stats tab and other features throughout the homepage.
-  	</p>
+    <p>
+      <a href="http://wordpress.com/">WordPress.com</a> is the software-as-a-service
+      version of <a href="http://wordpress.org">WordPress</a>. It uses Backbone.js
+      Models, Collections, and Views in its
+      <a href="http://en.blog.wordpress.com/2012/05/25/notifications-refreshed/">Notifications system</a>.  Backbone.js was selected
+      because it was easy to fit into the structure of the application, not the
+      other way around. <a href="http://automattic.com">Automattic</a>
+      (the company behind WordPress.com) is integrating Backbone.js into the
+      Stats tab and other features throughout the homepage.
+    </p>
 
     <div style="text-align: center;">
       <a href="http://wordpress.com/">
         <img width="550" height="387" data-original="../../docs/images/wpcom-notifications.png" alt="WordPress.com Notifications"
-  	title="WordPress.com Notifications" class="example_image" />
+    title="WordPress.com Notifications" class="example_image" />
       </a>
     </div>
 

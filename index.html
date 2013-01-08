@@ -20,6 +20,7 @@
     div#sidebar {
       background: #fff;
       position: fixed;
+      z-index: 10;
       top: 0; left: 0; bottom: 0;
       width: 200px;
       overflow-y: auto;
@@ -207,6 +208,28 @@
           margin: 20px;
           box-shadow: 0 8px 15px rgba(0,0,0,0.4);
         }
+<<<<<<< HEAD
+=======
+    @media only screen and (-webkit-max-device-pixel-ratio: 1) and (max-width: 600px),
+           only screen and (max--moz-device-pixel-ratio: 1) and (max-width: 600px) {
+      div#sidebar {
+        display: none;
+      }
+      img#logo {
+        max-width: 450px;
+        width: 100%;
+        height: auto;
+      }
+      div.container {
+        width: auto;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+        p, div.container ul {
+          width: auto;
+        }
+    }
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
     @media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 640px),
           only screen and (-o-min-device-pixel-ratio: 3/2) and (max-width: 640px),
           only screen and (min-device-pixel-ratio: 1.5) and (max-width: 640px) {
@@ -305,6 +328,7 @@
       <li>– <a href="#Model-changed">changed</a></li>
       <li>– <a href="#Model-defaults">defaults</a></li>
       <li>– <a href="#Model-toJSON">toJSON</a></li>
+      <li>– <a href="#Model-sync">sync</a></li>
       <li>– <a href="#Model-fetch">fetch</a></li>
       <li>– <a href="#Model-save">save</a></li>
       <li>– <a href="#Model-destroy">destroy</a></li>
@@ -331,6 +355,7 @@
       <li>– <a href="#Collection-constructor">constructor / initialize</a></li>
       <li>– <a href="#Collection-models">models</a></li>
       <li>– <a href="#Collection-toJSON">toJSON</a></li>
+      <li>– <a href="#Collection-sync">sync</a></li>
       <li>– <a href="#Collection-Underscore-Methods"><b>Underscore Methods (28)</b></a></li>
       <li>– <a href="#Collection-add">add</a></li>
       <li>– <a href="#Collection-remove">remove</a></li>
@@ -348,6 +373,7 @@
       <li>– <a href="#Collection-where">where</a></li>
       <li>– <a href="#Collection-url">url</a></li>
       <li>– <a href="#Collection-parse">parse</a></li>
+      <li>– <a href="#Collection-clone">clone</a></li>
       <li>– <a href="#Collection-fetch">fetch</a></li>
       <li>– <a href="#Collection-reset">reset</a></li>
       <li>– <a href="#Collection-create">create</a></li>
@@ -376,6 +402,7 @@
     </a>
     <ul class="toc_section">
       <li>– <a href="#Sync">Backbone.sync</a></li>
+      <li>– <a href="#Sync-ajax">Backbone.ajax</a></li>
       <li>– <a href="#Sync-emulateHTTP">Backbone.emulateHTTP</a></li>
       <li>– <a href="#Sync-emulateJSON">Backbone.emulateJSON</a></li>
     </ul>
@@ -393,6 +420,7 @@
       <li>– <a href="#View-dollar">$ (jQuery or Zepto)</a></li>
       <li>– <a href="#View-render">render</a></li>
       <li>– <a href="#View-remove">remove</a></li>
+      <li>– <a href="#View-dispose">dispose</a></li>
       <li>– <a href="#View-make">make</a></li>
       <li>– <a href="#View-delegateEvents">delegateEvents</a></li>
       <li>– <a href="#View-undelegateEvents">undelegateEvents</a></li>
@@ -402,8 +430,8 @@
       Utility
     </a>
     <ul class="toc_section">
-      <li>– <a href="#Utility-noConflict">noConflict</a></li>
-      <li>– <a href="#Utility-setDomLibrary">setDomLibrary</a></li>
+      <li>– <a href="#Utility-Backbone-noConflict">Backbone.noConflict</a></li>
+      <li>– <a href="#Utility-Backbone-$">Backbone.$</a></li>
     </ul>
 
     <a class="toc_title" href="#examples">
@@ -493,7 +521,7 @@
     <p>
       The project is <a href="http://github.com/documentcloud/backbone/">hosted on GitHub</a>,
       and the <a href="docs/backbone.html">annotated source code</a> is available,
-      as well as an online <a href="test/test.html">test suite</a>,
+      as well as an online <a href="test/">test suite</a>,
       an <a href="examples/todos/index.html">example application</a>,
       a <a href="https://github.com/documentcloud/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites">list of tutorials</a>
       and a <a href="#examples">long list of real-world projects</a> that use Backbone.
@@ -537,8 +565,9 @@
     </table>
 
     <p>
-      Backbone's only hard dependency is
-      <a href="http://documentcloud.github.com/underscore/">Underscore.js</a> <small>( > 1.3.1)</small>.
+      Backbone's only hard dependency is either
+      <a href="http://underscorejs.org/">Underscore.js</a> <small>( > 1.3.3)</small> or
+      <a href="http://lodash.com">Lo-Dash</a>.
       For RESTful persistence, history support via <a href="#Router">Backbone.Router</a>
       and DOM manipulation with <a href="#View">Backbone.View</a>, include
       <a href="https://github.com/douglascrockford/JSON-js">json2.js</a>, and either
@@ -688,7 +717,7 @@ proxy.on("all", function(eventName) {
       <b>context</b> is specified, all of the versions of the callback with
       different contexts will be removed. If no
       callback is specified, all callbacks for the <b>event</b> will be
-      removed. If no event is specified, <i>all</i> event callbacks on the object
+      removed. If no event is specified, callbacks for <i>all</i> events
       will be removed.
     </p>
 
@@ -708,6 +737,11 @@ object.off(null, null, context);
 // Removes all callbacks on `object`.
 object.off();
 </pre>
+
+    <p>
+      Note that calling <tt>model.off()</tt>, for example, will indeed remove <i>all</i> events
+      on the model &mdash; including events that Backbone uses for internal bookkeeping.
+    </p>
 
     <p id="Events-trigger">
       <b class="header">trigger</b><code>object.trigger(event, [*args])</code>
@@ -802,14 +836,14 @@ var PrivateNote = Note.extend({
 <pre>
 var Note = Backbone.Model.extend({
   set: function(attributes, options) {
-    Backbone.Model.prototype.set.call(this, attributes, options);
+    Backbone.Model.prototype.set.apply(this, arguments);
     ...
   }
 });
 </pre>
 
     <p id="Model-constructor">
-      <b class="header">constructor / initialize</b><code>new Model([attributes])</code>
+      <b class="header">constructor / initialize</b><code>new Model([attributes], [options])</code>
       <br />
       When creating an instance of a model, you can pass in the initial values
       of the <b>attributes</b>, which will be <a href="#Model-set">set</a> on the
@@ -830,6 +864,14 @@ new Book({
       you to replace the actual constructor function for your model.
     </p>
 
+    <p>
+      If you pass a <tt>{collection: ...}</tt> as the <b>options</b>, the model
+      gains a <tt>collection</tt> property that will be used to indicate which
+      collection the model belongs to, and is used to help compute the model's
+      <a href="#Model-url">url</a>. The <tt>model.collection</tt> property is
+      otherwise added automatically when you first add a model to a collection.
+    </p>
+
     <p id="Model-get">
       <b class="header">get</b><code>model.get(attribute)</code>
       <br />
@@ -841,7 +883,7 @@ new Book({
       <b class="header">set</b><code>model.set(attributes, [options])</code>
       <br />
       Set a hash of attributes (one or many) on the model. If any of the attributes
-      change the models state, a <tt>"change"</tt> event will be triggered, unless
+      change the model's state, a <tt>"change"</tt> event will be triggered, unless
       <tt>{silent: true}</tt> is passed as an option. Change events for specific
       attributes are also triggered, and you can bind to those as well, for example:
       <tt>change:title</tt>, and <tt>change:content</tt>. You may also pass
@@ -862,8 +904,15 @@ book.set("title", "A Scandal in Bohemia");
       You may also pass an <tt>error</tt>
       callback in the options, which will be invoked instead of triggering an
       <tt>"error"</tt> event, should validation fail.
-      If <tt>{silent: true}</tt> is passed as an option, the validation is deferred
-      until the next change.
+    </p>
+
+    <p>
+      Passing <tt>{silent: true}</tt> as an option will defer both the validation
+      and the event. This is useful when you want to
+      change attributes provisionally or rapidly, without propagating the change
+      through the rest of the system. That said, <tt>silent</tt> doesn't mean that
+      the change (and event) won't happen, it's merely silenced until the next
+      <a href="#Model-change">change</a>.
     </p>
 
     <p id="Model-escape">
@@ -906,7 +955,7 @@ if (note.has("title")) {
     <p id="Model-clear">
       <b class="header">clear</b><code>model.clear([options])</code>
       <br />
-      Removes all attributes from the model. Fires a <tt>"change"</tt> event unless
+      Removes all attributes from the model, including the <tt>id</tt> attribute. Fires a <tt>"change"</tt> event unless
       <tt>silent</tt> is passed as an option.
     </p>
 
@@ -952,9 +1001,22 @@ alert("Cake id: " + cake.id);
       <b class="header">attributes</b><code>model.attributes</code>
       <br />
       The <b>attributes</b> property is the internal hash containing the model's
-      state. Please use <a href="#Model-set">set</a> to update the attributes instead of modifying
-      them directly. If you'd like to retrieve and munge a copy of the model's
-      attributes, use <a href="#Model-toJSON">toJSON</a> instead.
+      state &mdash; usually (but not necessarily) a form of the JSON object
+      representing the model data on the server. It's often a straightforward
+      serialization of a row from the database, but it could also be client-side
+      computed state.
+    </p>
+
+    <p>
+      Please use <a href="#Model-set">set</a> to update the <b>attributes</b>
+      instead of modifying them directly. If you'd like to retrieve and munge a
+      copy of the model's attributes, use <a href="#Model-toJSON">toJSON</a>
+      instead.
+    </p>
+
+    <p class="warning">
+      Due to the fact that <a href="#Events">Events</a> accepts space separated
+      lists of events, attribute names should not include spaces.
     </p>
 
     <p id="Model-changed">
@@ -991,6 +1053,7 @@ alert("Dessert will be " + (new Meal).get('dessert'));
     <p class="warning">
       Remember that in JavaScript, objects are passed by reference, so if you
       include an object as a default value, it will be shared among all instances.
+      Instead, define <b>defaults</b> as a function.
     </p>
 
     <p id="Model-toJSON">
@@ -1013,6 +1076,13 @@ artist.set({birthday: "December 16, 1866"});
 
 alert(JSON.stringify(artist));
 </pre>
+
+    <p id="Model-sync">
+      <b class="header">sync</b><code>model.sync(method, model, [options])</code>
+      <br />
+      Uses <a href="#Sync">Backbone.sync</a> to persist the state of a model to
+      the server.  Can be overridden for custom behavior.
+    </p>
 
     <p id="Model-fetch">
       <b class="header">fetch</b><code>model.fetch([options])</code>
@@ -1190,8 +1260,9 @@ account.set({access: "unlimited"}, {
       <br />
       Returns the relative URL where the model's resource would be located on
       the server. If your models are located somewhere else, override this method
-      with the correct logic. Generates URLs of the form: <tt>"/[collection.url]/[id]"</tt>,
-      falling back to <tt>"/[urlRoot]/id"</tt> if the model is not part of a collection.
+      with the correct logic. Generates URLs of the form: <tt>"/[collection.url]/[id]"</tt>
+      by default, but you may override by specifying an explicit <tt>urlRoot</tt>
+      if the model's collection shouldn't be taken into account.
     </p>
 
     <p>
@@ -1206,10 +1277,11 @@ account.set({access: "unlimited"}, {
     <p id="Model-urlRoot">
       <b class="header">urlRoot</b><code>model.urlRoot or model.urlRoot()</code>
       <br />
-      Specify a <tt>urlRoot</tt> if you're using a model outside of a collection,
+      Specify a <tt>urlRoot</tt> if you're using a model <i>outside</i> of a collection,
       to enable the default <a href="#Model-url">url</a> function to generate
       URLs based on the model id. <tt>"/[urlRoot]/id"</tt><br />
-      Note that <tt>urlRoot</tt> may also be defined as a function.
+      Normally, you won't need to define this.
+      Note that <tt>urlRoot</tt> may also be a function.
     </p>
 
 <pre class="runnable">
@@ -1233,9 +1305,10 @@ alert(solaris.url());
     </p>
 
     <p>
-      If you're working with a Rails backend, you'll notice that Rails' default
-      <tt>to_json</tt> implementation includes a model's attributes under a
-      namespace. To disable this behavior for seamless Backbone integration, set:
+      If you're working with a Rails backend that has a version prior to 3.1,
+      you'll notice that its default <tt>to_json</tt> implementation includes
+      a model's attributes under a namespace. To disable this behavior for
+      seamless Backbone integration, set:
     </p>
 
 <pre>
@@ -1367,10 +1440,12 @@ var Library = Backbone.Collection.extend({
     <p id="Collection-constructor">
       <b class="header">constructor / initialize</b><code>new Collection([models], [options])</code>
       <br />
-      When creating a Collection, you may choose to pass in the initial array of <b>models</b>.
-      The collection's <a href="#Collection-comparator">comparator</a> function
-      may be included as an option. If you define an <b>initialize</b> function, it will be
-      invoked when the collection is created.
+      When creating a Collection, you may choose to pass in the initial array
+      of <b>models</b>.  The collection's <a href="#Collection-comparator">comparator</a>
+      may be included as an option. Passing <tt>false</tt> as the
+      comparator option will prevent sorting. If you define an
+      <b>initialize</b> function, it will be invoked when the collection is
+      created.
     </p>
 
 <pre>
@@ -1406,6 +1481,13 @@ var collection = new Backbone.Collection([
 alert(JSON.stringify(collection));
 </pre>
 
+    <p id="Collection-sync">
+      <b class="header">sync</b><code>collection.sync(method, collection, [options])</code>
+      <br />
+      Uses <a href="#Sync">Backbone.sync</a> to persist the state of a
+      collection to the server.  Can be overridden for custom behavior.
+    </p>
+
     <p id="Collection-Underscore-Methods">
       <b class="header">Underscore Methods (28)</b>
       <br />
@@ -1415,6 +1497,7 @@ alert(JSON.stringify(collection));
     </p>
 
     <ul class="small">
+<<<<<<< HEAD
       <li><a href="http://documentcloud.github.com/underscore/#each">forEach (each)</a></li>
       <li><a href="http://documentcloud.github.com/underscore/#map">map</a></li>
       <li><a href="http://documentcloud.github.com/underscore/#reduce">reduce (foldl, inject)</a></li>
@@ -1443,6 +1526,36 @@ alert(JSON.stringify(collection));
       <li><a href="http://documentcloud.github.com/underscore/#lastIndexOf">lastIndexOf</a></li>
       <li><a href="http://documentcloud.github.com/underscore/#isEmpty">isEmpty</a></li>
       <li><a href="http://documentcloud.github.com/underscore/#chain">chain</a></li>
+=======
+      <li><a href="http://underscorejs.org/#each">forEach (each)</a></li>
+      <li><a href="http://underscorejs.org/#map">map (collect)</a></li>
+      <li><a href="http://underscorejs.org/#reduce">reduce (foldl, inject)</a></li>
+      <li><a href="http://underscorejs.org/#reduceRight">reduceRight (foldr)</a></li>
+      <li><a href="http://underscorejs.org/#find">find (detect)</a></li>
+      <li><a href="http://underscorejs.org/#filter">filter (select)</a></li>
+      <li><a href="http://underscorejs.org/#reject">reject</a></li>
+      <li><a href="http://underscorejs.org/#all">every (all)</a></li>
+      <li><a href="http://underscorejs.org/#any">some (any)</a></li>
+      <li><a href="http://underscorejs.org/#include">include (contains)</a></li>
+      <li><a href="http://underscorejs.org/#invoke">invoke</a></li>
+      <li><a href="http://underscorejs.org/#max">max</a></li>
+      <li><a href="http://underscorejs.org/#min">min</a></li>
+      <li><a href="http://underscorejs.org/#sortBy">sortBy</a></li>
+      <li><a href="http://underscorejs.org/#groupBy">groupBy</a></li>
+      <li><a href="http://underscorejs.org/#sortedIndex">sortedIndex</a></li>
+      <li><a href="http://underscorejs.org/#shuffle">shuffle</a></li>
+      <li><a href="http://underscorejs.org/#toArray">toArray</a></li>
+      <li><a href="http://underscorejs.org/#size">size</a></li>
+      <li><a href="http://underscorejs.org/#first">first (head, take)</a></li>
+      <li><a href="http://underscorejs.org/#initial">initial</a></li>
+      <li><a href="http://underscorejs.org/#rest">rest (tail)</a></li>
+      <li><a href="http://underscorejs.org/#last">last</a></li>
+      <li><a href="http://underscorejs.org/#without">without</a></li>
+      <li><a href="http://underscorejs.org/#indexOf">indexOf</a></li>
+      <li><a href="http://underscorejs.org/#lastIndexOf">lastIndexOf</a></li>
+      <li><a href="http://underscorejs.org/#isEmpty">isEmpty</a></li>
+      <li><a href="http://underscorejs.org/#chain">chain</a></li>
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
     </ul>
 
 <pre>
@@ -1489,6 +1602,11 @@ ships.add([
 ]);
 </pre>
 
+    <p class="warning">
+      Note that adding the same model (a model with the same <tt>id</tt>) to
+      a collection more than once <br /> is a no-op.
+    </p>
+
     <p id="Collection-remove">
       <b class="header">remove</b><code>collection.remove(models, [options])</code>
       <br />
@@ -1502,7 +1620,7 @@ ships.add([
     <p id="Collection-get">
       <b class="header">get</b><code>collection.get(id)</code>
       <br />
-      Get a model from a collection, specified by <b>id</b>.
+      Get a model from a collection, specified by an <b>id</b> or a <b>model</b>.
     </p>
 
 <pre>
@@ -1512,10 +1630,8 @@ var book = Library.get(110);
     <p id="Collection-getByCid">
       <b class="header">getByCid</b><code>collection.getByCid(cid)</code>
       <br />
-      Get a model from a collection, specified by client id. The client id
-      is the <tt>.cid</tt> property of the model, automatically assigned whenever
-      a model is created. Useful for models which have not yet been saved to
-      the server, and do not yet have true ids.
+      Get a model from a collection, specified by a
+      <a href="#Model-cid"><b>cid</b></a> or a <b>model</b>.
     </p>
 
     <p id="Collection-at">
@@ -1564,16 +1680,17 @@ var book = Library.get(110);
     <p id="Collection-comparator">
       <b class="header">comparator</b><code>collection.comparator</code>
       <br />
-      By default there is no <b>comparator</b> function on a collection.
+      By default there is no <b>comparator</b> for a collection.
       If you define a comparator, it will be used to maintain
       the collection in sorted order. This means that as models are added,
       they are inserted at the correct index in <tt>collection.models</tt>.
-      Comparator function can be defined as either a
+      A comparator can be defined as a
       <a href="http://underscorejs.org/#sortBy">sortBy</a>
       (pass a function that takes a single argument),
-      or as a
+      as a
       <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/sort">sort</a>
-      (pass a comparator function that expects two arguments).
+      (pass a comparator function that expects two arguments),
+      or as a string indicating the attribute to sort by.
     </p>
 
     <p>
@@ -1605,17 +1722,17 @@ alert(chapters.pluck('title'));
 </pre>
 
     <p class="warning">
-      Collections with comparator functions will not automatically re-sort if you
-      later change model attributes, so you may wish to call <tt>sort</tt> after
-      changing model attributes that would affect the order.
+      Collections with a comparator will not automatically re-sort if you
+      later change model attributes, so you may wish to call
+      <tt>sort</tt> after changing model attributes that would affect the order.
     </p>
 
     <p id="Collection-sort">
       <b class="header">sort</b><code>collection.sort([options])</code>
       <br />
       Force a collection to re-sort itself. You don't need to call this under
-      normal circumstances, as a collection with a <a href="#Collection-comparator">comparator</a> function
-      will maintain itself in proper sort order at all times. Calling <b>sort</b>
+      normal circumstances, as a collection with a <a href="#Collection-comparator">comparator</a>
+      will sort itself whenever a model is added. Calling <b>sort</b>
       triggers the collection's <tt>"reset"</tt> event, unless silenced by passing
       <tt>{silent: true}</tt>
     </p>
@@ -1704,6 +1821,12 @@ var Tweets = Backbone.Collection.extend({
 });
 </pre>
 
+    <p id="Collection-clone">
+      <b class="header">clone</b><code>collection.clone()</code>
+      <br />
+      Returns a new instance of the collection with an identical list of models.
+    </p>
+
     <p id="Collection-fetch">
       <b class="header">fetch</b><code>collection.fetch([options])</code>
       <br />
@@ -1754,19 +1877,18 @@ Accounts.fetch();
     </p>
 
     <p id="Collection-reset">
-      <b class="header">reset</b><code>collection.reset(models, [options])</code>
+      <b class="header">reset</b><code>collection.reset([models], [options])</code>
       <br />
       Adding and removing models one at a time is all well and good, but sometimes
       you have so many models to change that you'd rather just update the collection
       in bulk. Use <b>reset</b> to replace a collection with a new list
       of models (or attribute hashes), triggering a single <tt>"reset"</tt> event
       at the end. Pass <tt>{silent: true}</tt> to suppress the <tt>"reset"</tt> event.
-      Using reset with no arguments is useful as a way to empty the collection.
     </p>
 
     <p>
       Here's an example using <b>reset</b> to bootstrap a collection during initial page load,
-      in a Rails application.
+      in a Rails application:
     </p>
 
 <pre>
@@ -1871,15 +1993,27 @@ var Workspace = Backbone.Router.extend({
       similar to the <a href="#View">View</a>'s <a href="#View-delegateEvents">events hash</a>.
       Routes can contain parameter parts, <tt>:param</tt>, which match a single URL
       component between slashes; and splat parts <tt>*splat</tt>, which can match
-      any number of URL components.
+      any number of URL components. Part of a route can be made optional by
+      surrounding it in parentheses <tt>(/:optional)</tt>.
     </p>
 
     <p>
       For example, a route of <tt>"search/:query/p:page"</tt> will match
       a fragment of <tt>#search/obama/p2</tt>, passing <tt>"obama"</tt>
-      and <tt>"2"</tt> to the action. A route of <tt>"file/*path"</tt> will
-      match <tt>#file/nested/folder/file.txt</tt>,
-      passing <tt>"nested/folder/file.txt"</tt> to the action.
+      and <tt>"2"</tt> to the action.
+    </p>
+
+    <p>
+      A route of <tt>"file/*path"</tt> will match
+      <tt>#file/nested/folder/file.txt</tt>, passing
+      <tt>"nested/folder/file.txt"</tt> to the action.
+    </p>
+
+    <p>
+      A route of <tt>"docs/:section(/:subsection)"</tt> will match
+      <tt>#docs/faq</tt> and <tt>#docs/faq/installing</tt>, passing
+      <tt>"faq"</tt> to the action in the first case, and passing <tt>"faq"</tt>
+      and <tt>"installing"</tt> to the action in the second.
     </p>
 
     <p>
@@ -2002,6 +2136,9 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
     <p>
       To indicate that you'd like to use HTML5 <tt>pushState</tt> support in
       your application, use <tt>Backbone.history.start({pushState: true})</tt>.
+      If you'd like to use <tt>pushState</tt>, but have browsers that don't support
+      it natively use full page refreshes instead, you can add
+      <tt>{hashChange: false}</tt> to the options.
     </p>
 
     <p>
@@ -2099,14 +2236,24 @@ end
 </pre>
 
     <p>
-      One more tip for Rails integration is to disable the default namespacing for
-      <tt>to_json</tt> calls on models by setting <tt>ActiveRecord::Base.include_root_in_json = false</tt>
+      One more tip for integrating Rails versions prior to 3.1 is to disable
+      the default namespacing for <tt>to_json</tt> calls on models by setting
+      <tt>ActiveRecord::Base.include_root_in_json = false</tt>
+    </p>
+
+    <p id="Sync-ajax">
+      <b class="header">ajax</b><code>Backbone.ajax = function(settings){ ... };</code>
+      <br />
+      If you want to use a custom ajax method or your ajax method doesn't support the
+      <a href="http://api.jquery.com/jQuery.ajax/">jQuery.ajax</a> api and you need to
+      translate the options you can do so by setting <tt>Backbone.ajax</tt>.  The method
+      you supply will be used instead of the default <tt>$.ajax</tt>.
     </p>
 
     <p id="Sync-emulateHTTP">
       <b class="header">emulateHTTP</b><code>Backbone.emulateHTTP = true</code>
       <br />
-      If you want to work with a legacy web server that doesn't support Backbones's
+      If you want to work with a legacy web server that doesn't support Backbone's
       default REST/HTTP approach, you may choose to turn on <tt>Backbone.emulateHTTP</tt>.
       Setting this option will fake <tt>PUT</tt> and <tt>DELETE</tt> requests with
       a HTTP <tt>POST</tt>, setting the <tt>X-HTTP-Method-Override</tt> header
@@ -2178,8 +2325,10 @@ var DocumentRow = Backbone.View.extend({
     <p id="View-constructor">
       <b class="header">constructor / initialize</b><code>new View([options])</code>
       <br />
-      When creating a new View, the options you pass are attached to the view
-      as <tt>this.options</tt>, for future reference. There are several special
+      When creating a new View, the options you pass &mdash; after being merged
+      into any default options already present on the view &mdash;
+      are attached to the view as <tt>this.options</tt> for future reference.
+      There are several special
       options that, if passed, will be attached directly to the view:
       <tt>model</tt>, <tt>collection</tt>,
       <tt>el</tt>, <tt>id</tt>, <tt>className</tt>, <tt>tagName</tt> and <tt>attributes</tt>.
@@ -2288,8 +2437,9 @@ ui.Chapter = Backbone.View.extend({
 
 <pre>
 var Bookmark = Backbone.View.extend({
+  template: _.template(…),
   render: function() {
-    $(this.el).html(this.template(this.model.toJSON()));
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   }
 });
@@ -2303,10 +2453,10 @@ var Bookmark = Backbone.View.extend({
       <a href="http://github.com/janl/mustache.js">Mustache.js</a>,
       <a href="http://github.com/creationix/haml-js">Haml-js</a>, and
       <a href="http://github.com/sstephenson/eco">Eco</a> are all fine alternatives.
-      Because <a href="http://documentcloud.github.com/underscore/">Underscore.js</a> is already on the page,
-      <a href="http://documentcloud.github.com/underscore/#template">_.template</a>
-      is available, and is an excellent choice if you've already XSS-sanitized
-      your interpolated data.
+      Because <a href="http://underscorejs.org/">Underscore.js</a> is already on the page,
+      <a href="http://underscorejs.org/#template">_.template</a>
+      is available, and is an excellent choice if you prefer simple
+      interpolated-JavaScript style templates.
     </p>
 
     <p>
@@ -2320,8 +2470,15 @@ var Bookmark = Backbone.View.extend({
     <p id="View-remove">
       <b class="header">remove</b><code>view.remove()</code>
       <br />
-      Convenience function for removing the view from the DOM. Equivalent to calling
-      <tt>$(view.el).remove();</tt>
+      <a href="#View-dispose">Dispose</a> of the view before removing it from
+      the DOM via <tt>view.$el.remove()</tt>.
+    </p>
+
+    <p id="View-dispose">
+      <b class="header">dispose</b><code>view.dispose()</code>
+      <br />
+      Clean up any references to the view in order to prevent unwanted latent
+      effects and memory leaks.
     </p>
 
     <p id="View-make">
@@ -2392,7 +2549,7 @@ var DocumentView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).html(this.template(this.model.toJSON()));
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 
@@ -2416,10 +2573,10 @@ var DocumentView = Backbone.View.extend({
       or remove a view from the DOM temporarily.
     </p>
 
-    <h2 id="Utility">Utility Functions</h2>
+    <h2 id="Utility">Utility</h2>
 
-    <p id="Utility-noConflict">
-      <b class="header">noConflict</b><code>var backbone = Backbone.noConflict();</code>
+    <p id="Utility-Backbone-noConflict">
+      <b class="header">Backbone.noConflict</b><code>var backbone = Backbone.noConflict();</code>
       <br />
       Returns the <tt>Backbone</tt> object back to its original value. You can
       use the return value of <tt>Backbone.noConflict()</tt> to keep a local
@@ -2432,12 +2589,12 @@ var localBackbone = Backbone.noConflict();
 var model = localBackbone.Model.extend(...);
 </pre>
 
-    <p id="Utility-setDomLibrary">
-      <b class="header">setDomLibrary</b><code>Backbone.setDomLibrary(jQueryNew);</code>
+    <p id="Utility-Backbone-$">
+      <b class="header">Backbone.$</b><code>Backbone.$ = $;</code>
       <br />
       If you have multiple copies of <tt>jQuery</tt> on the page, or simply want
       to tell Backbone to use a particular object as its DOM / Ajax library,
-      this is the function for you.
+      this is the property for you.
     </p>
 
     <h2 id="examples">Examples</h2>
@@ -2533,7 +2690,7 @@ var model = localBackbone.Model.extend(...);
       Backbone made it easy to keep the app modular, organized and extensible so
       that it was possible to program the complexities of LinkedIn's user experience.
       The app also uses <a href="http://zeptojs.com/">Zepto</a>,
-      <a href="http://documentcloud.github.com/underscore/">Underscore.js</a>,
+      <a href="http://underscorejs.org/">Underscore.js</a>,
       <a href="http://sass-lang.com/">SASS</a>, <a href="http://cubiq.org/iscroll">iScroll</a>,
       HTML5 LocalStorage and Canvas. The tech team blogged about
       <a href="http://engineering.linkedin.com/mobile/linkedin-ipad-using-local-storage-snappy-mobile-apps">their experiences using LocalStorage</a>
@@ -2869,7 +3026,7 @@ var model = localBackbone.Model.extend(...);
       <a href="https://manage.stripe.com">management interface</a> was recently
       rewritten from scratch in Coffeescript using Backbone.js as the primary
       framework, <a href="https://github.com/sstephenson/eco">Eco</a> for templates, <a href="http://sass-lang.com/">Sass</a> for stylesheets, and <a href="https://github.com/sstephenson/stitch">Stitch</a> to package
-      everything together as <a href="http://commonjs.org/">CommonJS</a> modulas. The new app uses
+      everything together as <a href="http://commonjs.org/">CommonJS</a> modules. The new app uses
       <a href="https://stripe.com/docs/api">Stripe's API</a> directly for the
       majority of its actions; Backbone.js models made it simple to map
       client-side models to their corresponding RESTful resources.
@@ -3094,7 +3251,10 @@ var model = localBackbone.Model.extend(...);
       </a>
     </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
     <h2 id="examples-scrollkit">scroll kit</h2>
 
     <p>
@@ -3128,11 +3288,16 @@ var model = localBackbone.Model.extend(...);
         <img width="550" height="435" data-original="docs/images/battlefield.png" alt="Battlefield Play4Free" class="example_image" />
       </a>
     </div>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
     <h2 id="examples-syllabus">Syllabus</h2>
 
     <p>
       <a href="http://product.voxmedia.com/post/25113965826/introducing-syllabus-vox-medias-s3-powered-liveblog">Syllabus</a>
+<<<<<<< HEAD
       is the new live blogging platform used by 
       <a href="http://www.theverge.com/">The Verge</a> 
       and other <a href="http://www.voxmedia.com/">Vox Media</a> sites.
@@ -3140,6 +3305,15 @@ var model = localBackbone.Model.extend(...);
       page itself. In the back, Backbone is used to provide a 
       single-page experience for uploading, writing, editing and publishing content. 
       On the live blog, Backbone manages fetching a JSON API feed, and updating 
+=======
+      is the new live blogging platform used by
+      <a href="http://www.theverge.com/">The Verge</a>
+      and other <a href="http://www.voxmedia.com/">Vox Media</a> sites.
+      Syllabus uses Backbone on both ends: an editorial dashboard and the live blog
+      page itself. In the back, Backbone is used to provide a
+      single-page experience for uploading, writing, editing and publishing content.
+      On the live blog, Backbone manages fetching a JSON API feed, and updating
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
       the infinite-scrolling river of updates with new and revised content.
     </p>
 
@@ -3156,7 +3330,7 @@ var model = localBackbone.Model.extend(...);
       artists and designers freely arrange their visual art on virtual walls.
       <a href="http://salon.io">Salon.io</a> runs on <a href="http://rubyonrails.org/">Rails</a>, but does not use
       much of the traditional stack, as the entire frontend is designed as a
-      single page web app, using Backbone.js and
+      single page web app, using Backbone.js, <a href="http://brunch.io/">Brunch</a> and
       <a href="http://coffeescript.org">CoffeeScript</a>.
     </p>
 
@@ -3193,13 +3367,17 @@ var model = localBackbone.Model.extend(...);
       <a href="http://blossom.io">Blossom</a> is a lightweight project management
       tool for lean teams. Backbone.js is heavily used in combination with
       <a href="http://coffeescript.org">CoffeeScript</a> to provide a smooth
-      interaction experience. The RESTful backend is built
-      with <a href="http://flask.pocoo.org/">Flask</a> on Google App Engine.
+      interaction experience. The app is packaged with <a href="http://brunch.io">Brunch</a>.
+      The RESTful backend is built with <a href="http://flask.pocoo.org/">Flask</a> on Google App Engine.
     </p>
 
     <div style="text-align: center;">
       <a href="http://blossom.io">
+<<<<<<< HEAD
         <img width="550" height="360" data-original="docs/images/blossom.png" alt="Blossom" class="example_image" />
+=======
+        <img width="550" height="367" data-original="docs/images/blossom.png" alt="Blossom" class="example_image" />
+>>>>>>> 0b2225655b8d20428f5a9c7288336d47bb24fc4d
       </a>
     </div>
 
@@ -3275,13 +3453,13 @@ var model = localBackbone.Model.extend(...);
     </p>
 
     <ul class="small">
-      <li><b>"add"</b> (model, collection) &mdash; when a model is added to a collection. </li>
-      <li><b>"remove"</b> (model, collection) &mdash; when a model is removed from a collection. </li>
-      <li><b>"reset"</b> (collection) &mdash; when the collection's entire contents have been replaced. </li>
+      <li><b>"add"</b> (model, collection, options) &mdash; when a model is added to a collection. </li>
+      <li><b>"remove"</b> (model, collection, options) &mdash; when a model is removed from a collection. </li>
+      <li><b>"reset"</b> (collection, options) &mdash; when the collection's entire contents have been replaced. </li>
       <li><b>"change"</b> (model, options) &mdash; when a model's attributes have changed. </li>
       <li><b>"change:[attribute]"</b> (model, value, options) &mdash; when a specific attribute has been updated. </li>
-      <li><b>"destroy"</b> (model, collection) &mdash; when a model is <a href="#Model-destroy">destroyed</a>. </li>
-      <li><b>"sync"</b> (model, collection) &mdash; triggers whenever a model has been successfully synced to the server. </li>
+      <li><b>"destroy"</b> (model, collection, options) &mdash; when a model is <a href="#Model-destroy">destroyed</a>. </li>
+      <li><b>"sync"</b> (model, resp, options) &mdash; triggers whenever a model has been successfully synced to the server. </li>
       <li><b>"error"</b> (model, collection) &mdash; when a model's validation fails, or a <a href="#Model-save">save</a> call fails on the server. </li>
       <li><b>"route:[name]"</b> (router) &mdash; when one of a router's routes has matched. </li>
       <li><b>"all"</b> &mdash; this special event fires for <i>any</i> triggered event, passing the event name as the first argument. </li>
@@ -3401,7 +3579,7 @@ var model = localBackbone.Model.extend(...);
 
     <p>
       <b>Render the UI</b> as you see fit. Backbone is agnostic as to whether you
-      use <a href="http://documentcloud.github.com/underscore/#template">Underscore templates</a>,
+      use <a href="http://underscorejs.org/#template">Underscore templates</a>,
       <a href="https://github.com/janl/mustache.js">Mustache.js</a>, direct DOM
       manipulation, server-side rendered snippets of HTML, or
       <a href="http://jqueryui.com/">jQuery UI</a> in your <tt>render</tt> function.
@@ -3571,8 +3749,8 @@ Inbox.messages.fetch();
       you pass a function as a callback, its value for <tt>this</tt> is lost. With
       Backbone, when dealing with <a href="#Events">events</a> and callbacks,
       you'll often find it useful to rely on
-      <a href="http://documentcloud.github.com/underscore/#bind">_.bind</a> and
-      <a href="http://documentcloud.github.com/underscore/#bindAll">_.bindAll</a>
+      <a href="http://underscorejs.org/#bind">_.bind</a> and
+      <a href="http://underscorejs.org/#bindAll">_.bindAll</a>
       from Underscore.js.
     </p>
 
@@ -3609,8 +3787,9 @@ Inbox.messages.add(newMessage);
     </p>
 
     <p>
-      By default, Rails adds an extra layer of wrapping around the JSON representation
-      of models. You can disable this wrapping by setting:
+      By default, Rails versions prior to 3.1 add an extra layer of wrapping
+      around the JSON representation of models. You can disable this wrapping
+      by setting:
     </p>
 
 <pre>
@@ -3781,6 +3960,9 @@ ActiveRecord::Base.include_root_in_json = false
         Calling <tt>clone</tt> on a model now only passes the attributes
         for duplication, not a reference to the model itself.
       </li>
+      <li>
+        Calling <tt>clear</tt> on a model now removes the <tt>id</tt> attribute.
+      </li>
     </ul>
 
     <p>
@@ -3925,7 +4107,7 @@ ActiveRecord::Base.include_root_in_json = false
 
   </div>
 
-  <script src="test/vendor/underscore-1.3.1.js"></script>
+  <script src="test/vendor/underscore.js"></script>
   <script src="test/vendor/jquery-1.7.1.js"></script>
   <script src="docs/js/jquery.lazyload.js"></script>
   <script src="test/vendor/json2.js"></script>
