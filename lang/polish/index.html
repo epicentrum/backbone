@@ -483,20 +483,11 @@
     </p>
 
     <p>
-<<<<<<< HEAD
     Backbone.js daje Ci gotową strukturę do budowy aplikacji internetowych. Zawiera 
     ona <b>modele</b> ze zdarzeniami niestandardowymi, grupujące dane na zasadzie 
     klucz-wartość, <b>kolekcję</b> z bogatym API funkcji wyliczeniowych, oraz 
     <b>widoki</b> z deklaratywną obsługą zdarzeń i łączy to wszystko z Twoim 
     istniejącymi API przez interfejs JSON zgodny z wzorcem REST.
-=======
-	  Backbone.js daje Ci gotową strukturę do budowy aplikacji internetowych. Zawiera 
-	  ona <b>modele</b> ze zdarzeniami niestandardowymi, grupujące dane na zasadzie 
-	  klucz-wartość, <b>kolekcję</b> z bogatym API funkcji wyliczeniowych, oraz 
-	  <b>widoki</b> z deklaratywną obsługą zdarzeń i łączy to wszystko z Twoim 
-	  istniejącymi API przez interfejs JSON zgodny z wzorcem REST.
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
-
     </p>
 
     <p>
@@ -559,7 +550,6 @@
     <h2 id="introduction">Wstęp</h2>
 
     <p>
-<<<<<<< HEAD
     Pracując nad aplikacją internetową opierającą się, w dużej mierze, na 
     JavaScripcie jedną z pierwszych rzeczy których trzeba się nauczyć jest 
     zaprzestanie przywiązywania danych do drzewa DOM. Stworzenie aplikacji 
@@ -568,16 +558,6 @@
     HTML, logiką Twojego kodu i bazą danych na serwerze, jest zbyt proste. 
     Pisząc RIA, opierające się na działaniu po stronie klienta, warto 
     zdecydować się na bardziej ustrukturyzowane podejście do sprawy.
-=======
-	  Pracując nad aplikacją internetową opierającą się, w dużej mierze, na 
-	  JavaScripcie jedną z pierwszych rzeczy których trzeba się nauczyć jest 
-	  zaprzestanie przywiązywania danych do drzewa DOM. Stworzenie aplikacji 
-	  JavaScript która staje się splątanym zbiorem selektorów jQuery i 
-	  callbacków próbujących w jakiś szalony sposób połączyć dane z interfejsem 
-	  HTML, logiką Twojego kodu i bazą danych na serwerze, jest zbyt proste. 
-	  Pisząc RIA, opierające się na działaniu po stronie klienta, warto 
-	  zdecydować się na bardziej ustrukturyzowane podejście do sprawy.
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
     </p>
 
     <p>
@@ -1998,11 +1978,7 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
     <p>
       <b>History</b> działa jak globalny router (osobno dla każdej ramki na stronie), 
       obsługujący zdarzenia <tt>hashchange</tt>, lub obiekt <tt>pushState</tt>, 
-<<<<<<< HEAD
       dokonuje wyboru odpowiedniej ścieżki (ang. route) i wywołuje funkcje zwrotne. Gdy 
-=======
-      dokonuje wyboru odpowiedniej ścieżki (route) i wywołuje funkcje zwrotne. Gdy 
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
       deklarujesz funkcję zwrotną zawsze odwołuj się do <tt>Backbone.history</tt> (
       obiekt ten zostanie utworzony gdy tylko użyjesz
       <a href="#Router">Routers</a> z <a href="#Router-routes">routes</a>) 
@@ -2010,11 +1986,7 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
 
     </p>
 
-<<<<<<< HEAD
     <p> 
-=======
-    <p>	
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
       Wsparcie <b>pushState</b> zaimplementowane jest w podstawie Backbone, 
       ale możesz zdecydować, czy chcesz je uruchomić. Starsze przeglądarki 
       które nie wspierają <tt>pushState</tt> będą wciąż używać URLi bazujących 
@@ -2035,11 +2007,7 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
       <b class="header">start</b><code>Backbone.history.start([options])</code>
       <br />
       Kiedy stworzyłeś już wszystkie <a href="#Router">Routery</a> a 
-<<<<<<< HEAD
       ścieżki (ang. routes) są poprawnie zadeklarowane, wywołaj <tt>Backbone.history.start()</tt>
-=======
-      ścieżki (routes) są poprawnie zadeklarowane, wywołaj <tt>Backbone.history.start()</tt>
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
       aby zacząć śledzenie zdarzeń <tt>hashchange</tt> i dysponowanie ścieżek.
     </p>
 
@@ -2056,21 +2024,13 @@ app.navigate("help/troubleshooting", {trigger: true, replace: true});
 
     <p>
       Wywołana metoda <tt>Backbone.history.start()</tt> zwraca <tt>true</tt> 
-<<<<<<< HEAD
       gdy dopasuje jedną ze zdefiniowanych ścieżek do aktualnego URL.
-=======
-      gdy dopasuje jedną ze zdefiniowanych ścieżek (route) do aktualnego URL.
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
       Gdy dopasowanie się nie powiedzie - zwróci <tt>false</tt>.
     </p>
 
     <p>
       Jeśli serwer już wyrerenderował całą stronę i nie chcesz uruchamiać 
-<<<<<<< HEAD
       zdarzenia ścieżki przy starcie History, dodaj: <tt>silent: true</tt>.
-=======
-      ścieżki (route) przy starcie History, dodaj: <tt>silent: true</tt>.
->>>>>>> 52d714b332b0f2d1d2cd996cc762eec3b8379377
     </p>
 
     <p>
